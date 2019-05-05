@@ -1,6 +1,8 @@
 package com.example.hambergerpt.datas;
 
-public class HambergerStores {
+import java.io.Serializable;
+
+public class HambergerStores implements Serializable {
 
     public String storeName;
     public String location;
