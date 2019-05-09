@@ -138,12 +138,13 @@ public class StoreDetail extends BaseActivity {
         int indexNum = act.menuSpinner.getSelectedItemPosition();
         hambMenuData = mList.get(indexNum);
 
-        act.menuSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        act.menuSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 hambMenuData = mList.get(position);
                 act.showMenuTxt.setText(hambMenuData.menuName);
-                act.hambergerPriceTxt.setText(hambMenuData.menuPrice);
+                act.hambergerPriceTxt.setText(String.format("%d",hambMenuData.menuPrice));
                 menuAdapter.notifyDataSetChanged();
 
                 act.deliveryRdBtn.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +164,11 @@ public class StoreDetail extends BaseActivity {
                         act.payBtn.setText(String.format("결제하기(%d원)",price));
                     }
                 });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
