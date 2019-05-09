@@ -116,83 +116,96 @@
 
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="주문 내역"
-            android:textSize="25sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            />
-
-        <TextView
-            android:id="@+id/showMenuTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="햄버거 이름"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            />
-
-        <TextView
-            android:id="@+id/hambergerPriceTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="햄버거 가격"
-            android:gravity="right"
-            android:layout_marginRight="20dp"
-            android:textSize="20sp"
-            android:layout_marginTop="5dp"
-            android:textColor="#000000"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="방문수령 or 배달"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:id="@+id/takeOrPickTxt"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="주문해주셔서 감사합니다."
-            android:textSize="30sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="100dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="20dp"
+            android:background="#ffcfcf"
             >
 
-            <Button
-                android:id="@+id/payBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="결제하기"
-                android:textSize="30sp"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="주문 내역"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/showMenuTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="햄버거 이름"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:textColor="#000000"
                 />
-            <Button
-                android:id="@+id/callBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="전화주문"
-                android:textSize="30sp"
-                android:layout_marginLeft="5dp"
-                android:textColor="#ff0000"
+
+            <TextView
+                android:id="@+id/hambergerPriceTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="햄버거 가격"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="방문수령 or 배달"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:id="@+id/takeOrPickTxt"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="주문해주셔서 감사합니다."
+                android:textSize="30sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="70dp"
+                >
+
+                <Button
+                    android:id="@+id/payBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="결제하기"
+                    android:textSize="30sp"
+                    android:textColor="#000000"
+                    android:background="#ffffff"
+                    />
+                <Button
+                    android:id="@+id/callBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="전화주문"
+                    android:textSize="30sp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ff0000"
+                    android:background="#ffffff"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
+
 
 
 

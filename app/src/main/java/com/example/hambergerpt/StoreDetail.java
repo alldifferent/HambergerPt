@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,8 @@ public class StoreDetail extends BaseActivity {
     List<HambMenu> mList = new ArrayList<>();
     HambergerStores hambergerStoresList;
     MenuAdapter menuAdapter;
-    HambMenu hambMenuData;
+    public HambMenu hambMenuData;
+    static final int deliveryPayment = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,16 @@ public class StoreDetail extends BaseActivity {
         act.payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int spinnerPosition = act.menuSpinner.getSelectedItemPosition();
+                hambMenuData = mList.get(spinnerPosition);
+                if (hambMenuData.menuName == "선택"){
+                    AlertDialog.Builder alert = new AlertDialog.Builder(StoreDetail.this);
+                    alert.setTitle("메뉴 선택 확인");
+                    alert.setMessage("메뉴 선택이 안되었습니다. 다시 선택해주세요.");
+                    alert.setPositiveButton("확인", null);
+                }
+
                 AlertDialog.Builder alert = new AlertDialog.Builder(StoreDetail.this);
                 alert.setTitle("결제 확인");
                 alert.setMessage("정말 결제하시겠습니까?");
@@ -119,31 +131,39 @@ public class StoreDetail extends BaseActivity {
         hambergerStoresList = (HambergerStores) getIntent().getSerializableExtra("가게정보");
 
         String imgUri = hambergerStoresList.imgURL;
-        int indexNum = act.menuSpinner.getSelectedItemPosition();
-        hambMenuData = mList.get(indexNum);
 
         Glide.with(StoreDetail.this).load(imgUri).into(act.storeImg);
         act.menuNameTxt.setText(hambergerStoresList.storeName);
 
-        act.deliveryRdBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int price = hambMenuData.menuPrice;
-                act.takeOrPickTxt.setText("배달 이용");
-                act.payBtn.setText(String.format("결제하기(%d원)",price+2000));
-                act.showMenuTxt.setText(hambMenuData.menuName);
-                menuAdapter.notifyDataSetChanged();
-            }
-        });
+        int indexNum = act.menuSpinner.getSelectedItemPosition();
+        hambMenuData = mList.get(indexNum);
 
-        act.pickRdBtn.setOnClickListener(new View.OnClickListener() {
+        act.menuSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                int price = hambMenuData.menuPrice;
-                act.takeOrPickTxt.setText("방문수령 이용");
-                act.payBtn.setText(String.format("결제하기(%d원)",price));
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                hambMenuData = mList.get(position);
                 act.showMenuTxt.setText(hambMenuData.menuName);
+                act.hambergerPriceTxt.setText(hambMenuData.menuPrice);
                 menuAdapter.notifyDataSetChanged();
+
+                act.deliveryRdBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int price = hambMenuData.menuPrice;
+                        act.takeOrPickTxt.setText("배달 이용");
+                        act.payBtn.setText(String.format("결제하기(%d원)",price+deliveryPayment));
+                    }
+                });
+
+                act.pickRdBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int price = hambMenuData.menuPrice;
+                        act.takeOrPickTxt.setText("방문수령 이용");
+                        act.payBtn.setText(String.format("결제하기(%d원)",price));
+                    }
+                });
+
             }
         });
 
@@ -158,6 +178,7 @@ public class StoreDetail extends BaseActivity {
 
     public void fillMenu(){
 
+        mList.add(new HambMenu("선택",0));
         mList.add(new HambMenu("불고기버거",4500));
         mList.add(new HambMenu("한우버거",6000));
         mList.add(new HambMenu("치즈버거",5000));
